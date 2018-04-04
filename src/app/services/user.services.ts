@@ -83,4 +83,18 @@ export class UserService{
                                         .set('Authorization', this.gettoken());
         return this._http.put(this.url + 'userUpdate/' + user._id, params, {headers: headers});
     }
+
+    getUsers(page = null):Observable<any>{
+        
+        let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                        .set('Authorization', this.gettoken());
+        return this._http.get(this.url + 'users/' + page, {headers: headers});
+    }
+
+    getUser(id = null):Observable<any>{
+        
+        let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                        .set('Authorization', this.gettoken());
+        return this._http.get(this.url + 'user/' + id, {headers: headers});
+    }
 }
