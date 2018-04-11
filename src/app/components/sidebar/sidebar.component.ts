@@ -27,7 +27,7 @@ export class SidebarComponent implements OnInit{
     public pages:string;
     public users:User[];
     public follows;*/
-    public stats:string;
+    public stats;
 
     constructor(
         /*private _route: ActivatedRoute,
@@ -39,7 +39,7 @@ export class SidebarComponent implements OnInit{
         //this.title = 'Gente';
         this.url = GLOBAL.url;
         //this.user = this._userService.getIdentity();
-        this.identity = this.user;
+        this.identity = this._userService.getIdentity();
         this.token = this._userService.gettoken();
         this.stats = this._userService.getStats();
 
