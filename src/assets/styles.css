@@ -3,7 +3,7 @@
 .h1-strong{
     font-size: 35px;
     font-weight: bold;
-    margin-left: 13px;
+    /*margin-left: 13px;*/
     margin-bottom: 20px;
     padding-bottom: 15px;
     border-bottom: 1px solid #eee;
@@ -48,7 +48,7 @@
 }
 
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:focus{
-    background: #cc1717 !important; 
+    background: #cc1717 !important;
 }
 
 .navigation .avatar{
@@ -61,8 +61,8 @@
 }
 
 .navigation .avatar img{
-    width: 38px;    
-    height: auto;    
+    width: 38px;
+    height: auto;
 }
 
 .item-user .image-user{
@@ -70,25 +70,25 @@
     height: 75px;
     border-radius: 100px;
     overflow: hidden;
-    
+
     margin-right: 15px;
 
 }
 
 .item-user .image-user img{
-    width: 120px;    
-    height: auto;    
+    width: 120px;
+    height: auto;
 }
 
 
 .item-user .user-name{
-   
+
     margin-top: 10px;
 
 }
 
 .item-user .user-name .nickname{
-   
+
     color:#969393;
 
 }
@@ -96,7 +96,7 @@
 
 
 .item-user .user-name .name-surname a{
-   
+
     font-weight: bold;
     color: #555;
 
@@ -105,4 +105,60 @@
 .avatar-default{
 
     width: 100% !important;
+}
+
+
+/*SIDEBAR*/
+
+.sidebar-32{
+  width: 32% !important;
+  padding: 0px !important;
+}
+
+#user-card{
+  padding: 25px;
+  width: 32%;
+}
+
+
+#user-card .avatar{
+  width: 75px;
+  height: 75px;
+  border-radius: 100px;
+  overflow: hidden;
+
+  margin-right: 15px;
+
+}
+
+#user-card .avatar img{
+  width: 100%;
+
+}
+
+#user-card .name-surname{
+  font-weight: 300;
+  font-size: 17px;
+}
+
+
+#user-card .name-surname a {
+  color: #555;
+}
+
+#user-card .name-surname .nickname {
+  color: #969393;
+}
+
+#user-card .stats {
+  border-top: 1px solid #eee;
+}
+
+#user-card .label-stats,
+#user-card .number-stats, {
+  border-top: 1px solid #eee;
+}
+
+#user-card .stats {
+  border-top: 1px solid #eee;
 }

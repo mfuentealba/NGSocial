@@ -12,7 +12,7 @@ export class UserService{
     public stats:any;
 
     constructor(
-        public _http:HttpClient 
+        public _http:HttpClient
     ){
         this.url = GLOBAL.url;
     }
@@ -55,8 +55,11 @@ export class UserService{
 
     getStats(){
         let stats = JSON.parse(localStorage.getItem('stats'));
+        console.log("getStats");
 
-        if(stats == 'undefined'){
+
+        console.log(stats);
+        if(stats != 'undefined'){
             this.stats = stats
         } else {
             this.stats = null;
@@ -65,7 +68,7 @@ export class UserService{
     }
 
     getCounters(userId = null):Observable<any>{
-        
+        console.log("getCounters");
         let headers = new HttpHeaders().set('Content-Type', 'application/json')
                                         .set('Authorization', this.gettoken());
 
@@ -74,7 +77,7 @@ export class UserService{
         } else {
             return this._http.get(this.url + 'counters', {headers: headers});
         }
-        
+
     }
 
     updateUser(user:User):Observable<any>{
@@ -85,14 +88,14 @@ export class UserService{
     }
 
     getUsers(page = null):Observable<any>{
-        
+
         let headers = new HttpHeaders().set('Content-Type', 'application/json')
                                         .set('Authorization', this.gettoken());
         return this._http.get(this.url + 'users/' + page, {headers: headers});
     }
 
     getUser(id = null):Observable<any>{
-        
+
         let headers = new HttpHeaders().set('Content-Type', 'application/json')
                                         .set('Authorization', this.gettoken());
         return this._http.get(this.url + 'user/' + id, {headers: headers});

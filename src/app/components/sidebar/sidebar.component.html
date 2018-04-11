@@ -1,11 +1,17 @@
+<div class="col-lg-4 sidebar-32">
+  <h1 class="h1-strong">
+    Hola, {{identity.name}}
+  </h1>
+</div>
+
 <div id="user-card" class="col-lg-4 panel panel-default pull-left">
-  <div class="avatar">
+  <div class="avatar pull-left">
     <img src="{{url + 'getImageFile/' + identity.image}}" *ngIf="identity.image"/>
     <img src="assets/user.png" class="avatar-default" *ngIf="!identity.image"/>
   </div>
 
-  <div class="name-surname">
-    <a href="#">
+  <div class="name-surname pull-left">
+    <a href="#" class="username">
             {{identity.name + ' ' + identity.surname}}
     </a>
     <p class="nickname">{{identity.nick}}</p>
@@ -20,7 +26,7 @@
           Siguiendo
         </span>
         <span class="number-stats">
-          {{stats.following}}
+          {{stats['following']}}
         </span>
       </a>
 

@@ -41,8 +41,9 @@ export class SidebarComponent implements OnInit{
         //this.user = this._userService.getIdentity();
         this.identity = this._userService.getIdentity();
         this.token = this._userService.gettoken();
+        console.log('CONSTRUCCION');
         this.stats = this._userService.getStats();
-
+        console.log(this.stats);
     }
 
     ngOnInit(){
