@@ -66,7 +66,7 @@
   <div class="alert alert-danger" *ngIf="status == 'error'">
     Publicación erronea
   </div>
-  <form class="col-lg-10" #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm)">
+  <form class="col-lg-10" #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm, $event)">
     <p>
       <label>¿Qué estás pensando?</label>
       <textarea name="text" #text="ngModel" [(ngModel)]="publication.text" class="form-control" required></textarea>
@@ -78,9 +78,9 @@
     <p>
       <label>sube tu foto</label>
       <input type="file" placeholder="subir imagen">
-      
+
     </p>
-    
+
     <input type="submit" value="Enviar" class="btn btn-success" [disabled]="
     !newPubForm.form.valid">
   </form>
