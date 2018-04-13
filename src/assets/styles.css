@@ -65,7 +65,8 @@
     height: auto;
 }
 
-.item-user .image-user{
+.item-user .image-user,
+.item-publication .image-user{
     width: 75px;
     height: 75px;
     border-radius: 100px;
@@ -75,13 +76,15 @@
 
 }
 
-.item-user .image-user img{
+.item-user .image-user img,
+.item-publication .image-user img{
     width: 120px;
     height: auto;
 }
 
 
-.item-user .user-name{
+.item-user .user-name,
+.publication-user .user-name{
 
     margin-top: 10px;
 
@@ -120,6 +123,10 @@
   width: 32%;
 }
 
+#new-publication{
+    padding: 18px;
+    padding-left: 8px;
+}
 
 #user-card .avatar{
   width: 75px;
@@ -152,13 +159,60 @@
 
 #user-card .stats {
   border-top: 1px solid #eee;
+  margin-top: 10px;
+}
+
+#user-card .stats a:hover{
+    text-decoration: none;
+    
+}
+
+#user-card .stats a:hover .number-stats{
+    color: #cc1717;
+    
 }
 
 #user-card .label-stats,
-#user-card .number-stats, {
-  border-top: 1px solid #eee;
+#user-card .number-stats {
+  display: block;
+  text-align: center;
+  transition: 300ms;
 }
 
-#user-card .stats {
-  border-top: 1px solid #eee;
+#user-card .label-stats{
+    font-weight: bold;
+    color: #555;
+}
+
+#user-card .number-stats{
+    font-weight: bold;
+    color: green;
+}
+
+#user-card .following-data {
+  float: left;
+  padding-left: 18px;
+  padding-right: 18px;
+  margin-top: 10px;
+  border-right: 2px solid #eee;
+}
+
+#user-card .following-data:first-child {
+    
+    padding-left: 6px; 
+}
+
+#user-card .following-data:last-child {
+    
+    border:none;
+}
+
+/*TIMELINE*/
+
+#publication{
+    min-height: 500px;
+}
+
+#publication .date{
+    color: grey;
 }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 /*import { Router, ActivatedRoute, Params } from '@angular/router';
-import { User } from '../../models/user';
-import { Follow } from '../../models/follow';  */
+import { User } from '../../models/user';*/
+import { Publication } from '../../models/publication';  
 import { UserService } from '../../services/user.services';
+import { PublicationService } from '../../services/publication.service';
 
 //import { Form } from '@angular/forms';
 import { GLOBAL } from '../../services/global';
@@ -11,7 +12,7 @@ import { GLOBAL } from '../../services/global';
 @Component({
     selector: 'sidebar',
     templateUrl: './sidebar.component.html',
-    providers: [UserService/*, FollowService*/]
+    providers: [UserService, PublicationService]
 })
 export class SidebarComponent implements OnInit{
     /*public title:string;
@@ -20,6 +21,7 @@ export class SidebarComponent implements OnInit{
     public identity;
     public token;
     public url:string;
+    public publication:Publication;
     /*public page;
     public next_page;
     public prev_page;
@@ -32,8 +34,8 @@ export class SidebarComponent implements OnInit{
     constructor(
         /*private _route: ActivatedRoute,
         private _router: Router,*/
-        private _userService: UserService/*,
-        private _followService: FollowService*/
+        private _userService: UserService,
+        private _publicationService: PublicationService
 
     ){
         //this.title = 'Gente';
@@ -44,6 +46,7 @@ export class SidebarComponent implements OnInit{
         console.log('CONSTRUCCION');
         this.stats = this._userService.getStats();
         console.log(this.stats);
+        this.publication = new Publication("", "", "", "", this.identity._id);
     }
 
     ngOnInit(){
@@ -51,6 +54,26 @@ export class SidebarComponent implements OnInit{
         //this.actualPage();
     }
 
-
+    onSubmit(form){
+        this._publicationService.addPublication(this.token, this.publication).subscribe(
+            response => {
+                if(response.publication){
+                    
+                    this.status = 'success';
+                    form.reset();
+                } else {
+                    this.status = 'error';
+                }
+            },
+            error => {
+                var errorMessage = <any>error;
+                
+                console.log(errorMessage);
+                if(errorMessage != null){
+                    this.status = 'error';
+                }
+            }
+        )
+    }
 
 }

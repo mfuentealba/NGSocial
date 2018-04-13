@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
+import { MomentModule } from 'ngx-moment';
+
 //import { HttpModule } from '@angular/http';Modulo para peticiones ajax
 import { HttpClientModule } from '@angular/common/http';
 
@@ -13,6 +16,7 @@ import { HomeComponent } from './components/home/home.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UsersComponent } from './components/users/users.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { TimelineComponent } from './components/timeline/timeline.component';
 
 
 @NgModule({
@@ -23,14 +27,16 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     HomeComponent,
     UserEditComponent,
     UsersComponent,
-    SidebarComponent
+    SidebarComponent,
+    TimelineComponent
   ],
   imports: [
     BrowserModule,
     routing,
     FormsModule,
     //HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    MomentModule
   ],
   providers: [
     appRoutingProviders

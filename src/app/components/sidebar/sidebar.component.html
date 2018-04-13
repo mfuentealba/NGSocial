@@ -31,9 +31,19 @@
       </a>
 
     </div>
-  </div>
 
-  <div class="stats" *ngIf="stats">
+    <div class="following-data">
+      <a href="#">
+        <span class="label-stats">
+          Publicaciones
+        </span>
+        <span class="number-stats">
+          {{stats.publications}}
+        </span>
+      </a>
+
+    </div>
+
     <div class="following-data">
       <a href="#">
         <span class="label-stats">
@@ -47,17 +57,31 @@
     </div>
   </div>
 
-  <div class="stats" *ngIf="stats">
-    <div class="following-data">
-      <a href="#">
-        <span class="label-stats">
-          Publicaciones
-        </span>
-        <span class="number-stats">
-          {{stats.publications}}
-        </span>
-      </a>
+</div>
 
-    </div>
+<div id="new-publication" class="col-lg-4 pull-left panel panel-default">
+  <div class="alert alert-success" *ngIf="status == 'success'">
+    Publicación realizada
   </div>
+  <div class="alert alert-danger" *ngIf="status == 'error'">
+    Publicación erronea
+  </div>
+  <form class="col-lg-10" #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm)">
+    <p>
+      <label>¿Qué estás pensando?</label>
+      <textarea name="text" #text="ngModel" [(ngModel)]="publication.text" class="form-control" required></textarea>
+      <span *ngIf="!text.valid && text.touched">
+          El campo es obligatorio
+      </span>
+    </p>
+
+    <p>
+      <label>sube tu foto</label>
+      <input type="file" placeholder="subir imagen">
+      
+    </p>
+    
+    <input type="submit" value="Enviar" class="btn btn-success" [disabled]="
+    !newPubForm.form.valid">
+  </form>
 </div>
