@@ -18,6 +18,7 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { UsersComponent } from './components/users/users.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 
@@ -31,7 +32,8 @@ import { TimelineComponent } from './components/timeline/timeline.component';
     UsersComponent,
     SidebarComponent,
     TimelineComponent,
-    PublicationsComponent
+    PublicationsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

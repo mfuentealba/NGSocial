@@ -139,7 +139,7 @@
 }
 
 #user-card .avatar img{
-  width: 100%;
+  width: 120%;
 
 }
 
@@ -215,4 +215,56 @@
 
 #publication .date{
     color: grey;
+}
+
+
+/*PERFILES*/
+
+#data-profile{
+    min-height: 500px;
+    text-align: left;
+}
+
+
+#data-profile .avatar{
+    width: 185px;
+    height: 185px;
+    border-radius: 400px;
+    overflow: hidden;
+   
+    margin-right: 15px;
+}
+
+#data-profile .avatar img{
+    width: 120%;
+  
+}
+
+#data-profile .user-name{
+    margin-top: 40px;
+}
+
+#data-profile .user-name .name{
+    font-size: 24px;
+    font-weight: bold;
+    color: #555;
+}
+
+#data-profile .user-name .nick{
+    font-size: 24px;
+    font-weight: normal;
+    color: grey;
+}
+
+#data-profile .stats{
+    border-left: 4px solid #ccc;
+    margin-left: 35px;
+    padding-left: 25px;
+    height: 180px;
+}
+
+#data-profile .stats a{
+    font-size: 20px;
+    line-height: 35px;
+    color: #555;
 }
