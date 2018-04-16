@@ -7,10 +7,10 @@ import { GLOBAL } from './global';
 @Injectable()
 export class PublicationService{
     public url:string;
-   
+
 
     constructor(
-        public _http:HttpClient 
+        public _http:HttpClient
     ){
         this.url = GLOBAL.url;
     }
@@ -28,8 +28,14 @@ export class PublicationService{
         return this._http.get(this.url + 'publications/' + page, {headers: headers});
     }
 
+    getPublicationsUser(token, user_id, page = 1){
+      let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                              .set('Authorization', token);
+      return this._http.get(this.url + 'publicationsUser/' + user_id + '/' + page, {headers: headers});
+  }
+
     deletePublication(token, id):Observable<any>{
-        
+
         let headers = new HttpHeaders().set('Content-Type', 'application/json')
                                 .set('Authorization', token);
         return this._http.delete(this.url + 'publicationDelete/' + id, {headers: headers});

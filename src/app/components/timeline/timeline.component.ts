@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Publication } from '../../models/publication';
-import { User } from '../../models/user';  
+import { User } from '../../models/user';
 import { UserService } from '../../services/user.services';
 import { PublicationService } from '../../services/publication.service';
 import { GLOBAL } from '../../services/global';
@@ -24,7 +24,7 @@ export class TimelineComponent implements OnInit{
      /*public next_page;
     public prev_page;*/
     public total:number;
-    public pages:string;
+    public pages:number;
     /*public users:User[];
     public follows;*/
     public stats;
@@ -41,8 +41,8 @@ export class TimelineComponent implements OnInit{
         this.url = GLOBAL.url;
         this.identity = this._userService.getIdentity();
         this.token = this._userService.gettoken();
-        
-        
+
+
     }
 
     ngOnInit(){
@@ -68,20 +68,20 @@ export class TimelineComponent implements OnInit{
                 } else {
                     this.publications = response['publications'];
                 }
-                
+
                 /*if(page > this.pages){
                     this._router.navigate(['/home']);
                 }*/
 
                 this.status = 'success';
-                
+
             } else {
                 this.status = 'error';
             }
         },
         error => {
             var errorMessage = <any>error;
-            
+
             console.log(errorMessage);
             if(errorMessage != null){
                 this.status = 'error';
@@ -94,12 +94,9 @@ export class TimelineComponent implements OnInit{
    viewMore(){
         console.log(this.publications.length);
         console.log(this.total);
-
-       if(this.publications.length == this.total){
+        this.page++;
+       if(this.page == this.pages){
             this.noMore = true;
-       } else {
-            this.noMore = false
-           this.page++;
        }
 
        this.getPublications(this.page, true);

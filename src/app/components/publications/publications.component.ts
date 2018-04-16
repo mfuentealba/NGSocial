@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Publication } from '../../models/publication';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.services';
@@ -20,14 +20,15 @@ export class PublicationsComponent implements OnInit{
     public token;
     public url:string;
     public publications:Publication[];
-    public page = 1;
+    public page:number = 1;
      /*public next_page;
     public prev_page;*/
     public total:number;
-    public pages:string;
+    public pages:number = 0;
 
     public stats;
     public itemsPerPage:number;
+    @Input() user:string;
 
     constructor(
         private _route: ActivatedRoute,
@@ -46,11 +47,13 @@ export class PublicationsComponent implements OnInit{
 
     ngOnInit(){
         console.log("componente publications cargado");
-        this.getPublications(this.page);
+        this.getPublications(this.user, this.page);
     }
 
-   getPublications(page, adding = false){
-       this._publicationService.getPublication(this.token, page).subscribe(
+
+
+   getPublications(user, page, adding = false){
+       this._publicationService.getPublicationsUser(this.token, user, page).subscribe(
         response => {
             console.log(response);
             console.log(response['publications']);
@@ -63,7 +66,7 @@ export class PublicationsComponent implements OnInit{
                     var arrA = this.publications;
                     var arrB = response['publications'];
                     this.publications = arrA.concat(arrB);
-                    $("html, body").animate({scrollTop: $('body').prop("scrollHeight")}, 500);
+                    $("html, body").animate({scrollTop: $('html').prop("scrollHeight")}, 500);
                 } else {
                     this.publications = response['publications'];
                 }
@@ -93,12 +96,12 @@ export class PublicationsComponent implements OnInit{
    viewMore(){
         console.log(this.publications.length);
         console.log(this.total);
-
-       if(this.publications.length == this.total){
+        this.page++;
+       if(this.page == this.pages){
             this.noMore = true;
        } else {
             this.noMore = false
-           this.page++;
+
        }
 
        this.getPublications(this.page, true);

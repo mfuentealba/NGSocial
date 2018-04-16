@@ -164,12 +164,12 @@
 
 #user-card .stats a:hover{
     text-decoration: none;
-    
+
 }
 
 #user-card .stats a:hover .number-stats{
     color: #cc1717;
-    
+
 }
 
 #user-card .label-stats,
@@ -198,12 +198,12 @@
 }
 
 #user-card .following-data:first-child {
-    
-    padding-left: 6px; 
+
+    padding-left: 6px;
 }
 
 #user-card .following-data:last-child {
-    
+
     border:none;
 }
 
@@ -231,13 +231,13 @@
     height: 185px;
     border-radius: 400px;
     overflow: hidden;
-   
+
     margin-right: 15px;
 }
 
 #data-profile .avatar img{
     width: 120%;
-  
+
 }
 
 #data-profile .user-name{
@@ -267,4 +267,8 @@
     font-size: 20px;
     line-height: 35px;
     color: #555;
+}
+
+#data-profile .publications{
+  margin-top: 30px;
 }
