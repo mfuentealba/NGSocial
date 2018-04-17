@@ -9,13 +9,13 @@
                 <div class="panel-body">
 
                     <div class="image-user pull-left">
-                        <a href="#">
+                        <a [routerLink]="['/perfil', publication.user['_id']]">
                             <img src="{{url + 'getImageFile/' + publication.user['image']}}" *ngIf="publication.user['image']">
                             <img src="assets/user.png" class="avatar-default" *ngIf="!publication.user.image">
                         </a>
                     </div>
                     <div>
-                        <span class="user-name">{{publication.user['name'] + ' ' + publication.user['surname']}}</span>
+                        <a class="user-name" [routerLink]="['/perfil', publication.user['_id']]">{{publication.user['name'] + ' ' + publication.user['surname']}}</a>
                         &nbsp;|&nbsp;
                         <span class="date">
                             {{(publication['created_at'] | amFromUnix) | amLocale: 'es' | amTimeAgo}}
