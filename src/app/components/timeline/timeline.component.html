@@ -26,6 +26,53 @@
                     <h4 class="publication-text pull-left">
                         {{publication.text}}
                     </h4>
+
+                    <div class="pull-right" *ngIf="publication.user['_id'] == identity._id">
+                            &nbsp;
+                        <!--<button class="btn btn-danger" (click)="showThisImage(publication._id)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                            
+                        </button>-->
+
+                        <!-- Button HTML (to Trigger Modal) -->
+                        <a href="#myModal{{publication._id}}" role="button" class="btn btn-danger" data-toggle="modal">
+                                <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                        
+                        <!-- Modal HTML -->
+                        <div id="myModal{{publication._id}}" class="modal fade"><!--Se concatena id de la publicacion para poder generar un modal unico por elemento, seto se puede evitar de mejor manera-->
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">¿Seguro que quiere eliminar la publicación?</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Si la borras no podrás recuperarla</p>
+                                        <p class="text-warning"><small>Cuidado con esta opción.</small></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                        <button (click)="deletePublication(publication._id)" type="button" class="btn btn-primary" data-dismiss="modal">Borrar la publicación</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                   
+                    <div class="pull-right" *ngIf="publication.file">
+                        <button class="btn btn-warning" [class.btn-danger]="publication._id == showImage" (click)="showThisImage(publication._id)">
+                            <span class="glyphicon glyphicon-picture" *ngIf="publication._id != showImage"></span>
+                            <span class="glyphicon glyphicon-remove-circle" *ngIf="publication._id == showImage"></span>
+                        </button>
+                    </div>
+
+                    <div class="col-lg-12" *ngIf="publication.file != 'null' && showImage == publication._id">
+                        <br />
+                        <img class="col-lg-12" src="{{url + 'getImageFilePublication/' + publication.file}}">
+                    </div>
                 </div>
 
             </div>
