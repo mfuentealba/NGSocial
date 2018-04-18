@@ -55,6 +55,7 @@ export class SidebarComponent implements OnInit{
 
     ngOnInit(){
         console.log("componente SidebarComponent cargado");
+        console.log(this.identity);
         //this.actualPage();
     }
 
@@ -62,10 +63,10 @@ export class SidebarComponent implements OnInit{
         this._publicationService.addPublication(this.token, this.publication).subscribe(
             response => {
                 console.log(event);
-                
+
                 if(response.publication){
 
-                    
+
                     if(this.filesToUpload && this.filesToUpload.length){
                         this._uploadService.makeFileRequest(this.url + 'uploadImagePublication/' + response.publication._id, [], this.filesToUpload, this.token, 'image')
                         .then((result:any) => {
@@ -80,7 +81,7 @@ export class SidebarComponent implements OnInit{
                         this.sendPublication(event);
                         this._router.navigate(['timeline/']);
                     }
-                    
+
 
                 } else {
                     this.status = 'error';
