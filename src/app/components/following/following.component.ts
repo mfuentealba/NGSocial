@@ -25,8 +25,9 @@ export class FollowingComponent implements OnInit{
     public total:string;
     public pages:string;
     public users:User[];
-    public follows;
+    public follows:any[];
     public following;
+    public userPageId;
 
     constructor(
         private _route: ActivatedRoute,
@@ -35,7 +36,7 @@ export class FollowingComponent implements OnInit{
         private _followService: FollowService
 
     ){
-        this.title = 'Gente';
+        this.title = 'Usuarios seguidos por ';
         this.url = GLOBAL.url;
         this.user = this._userService.getIdentity();
         this.identity = this.user;
@@ -53,6 +54,7 @@ export class FollowingComponent implements OnInit{
             console.log("DATOS FOLLOWING ");
             console.log(params);
             let user_id = params['id'];
+            this.userPageId = user_id
             let page = +params['page'];
 
             this.page = page;
@@ -73,16 +75,24 @@ export class FollowingComponent implements OnInit{
                 }
             }
             //devolver usuarios
-            this.getFollows(user_id, 1);
+            this.getUser(user_id, page);
         });
     }
 
     getFollows(user_id, page){
         this._followService.getFollowing(this.token, user_id, page).subscribe(
             response => {
+                console.log("response getFollows");
                 console.log(response);
-
-                //this.total =
+                if(!response.follows){
+                    this.status = 'error';
+                } else {
+                    this.total = response.total;
+                    this.pages = response.pages;
+                    this.following = response.follows;
+                    this.follows = response.users_following;
+                }
+                
             },
             error => {
                 var errorMessage = <any>error;
@@ -94,6 +104,31 @@ export class FollowingComponent implements OnInit{
             }
         )
     }
+
+   
+    getUser(id, page){
+        this._userService.getUser(id).subscribe(
+            response => {
+                
+                if(!response.user){
+                    this._router.navigate(['/home']);
+                } else {
+                    this.user = response.user;
+                    this.getFollows(id, 1);
+                }
+                
+            },
+            error => {
+                var errorMessage = <any>error;
+
+                console.log(errorMessage);
+                if(errorMessage != null){
+                    this.status = 'error';
+                }
+            }
+        )
+    }
+
 
     public followUserOver = '0';
     mouseEnter(_id){
