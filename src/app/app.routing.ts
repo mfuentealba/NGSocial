@@ -22,7 +22,7 @@ const appRoutes: Routes = [
     {path: 'timeline', component: TimelineComponent},
     {path: 'perfil/:id', component: ProfileComponent},
     {path: 'siguiendo/:id/:page', component: FollowingComponent},
-    {path: 'followed/:id', component: FollowedComponent},
+    {path: 'seguidores/:id/:page', component: FollowedComponent},
     {path: '**', component: HomeComponent}
 
 ];

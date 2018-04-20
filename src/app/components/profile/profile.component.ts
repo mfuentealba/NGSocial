@@ -48,7 +48,7 @@ export class ProfileComponent implements OnInit{
         this.token = this._userService.gettoken();
         this.followed = false;
         this.following = false;
-        //this.stats = this._userService.getStats();
+        this.stats = this._userService.getStats();
         
     }
 
