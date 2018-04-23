@@ -22,7 +22,9 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { FollowingComponent } from './components/following/following.component';
 import { FollowedComponent } from './components/followed/followed.component';
 
+//Modulo custom
 
+import { MessagesRoutingModule } from './messages/messages.routing.module'
 
 @NgModule({
   declarations: [
