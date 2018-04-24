@@ -24,7 +24,7 @@ import { FollowedComponent } from './components/followed/followed.component';
 
 //Modulo custom
 
-import { MessagesRoutingModule } from './messages/messages.routing.module'
+import { MessageModule } from './messages/message.module'
 
 @NgModule({
   declarations: [
@@ -47,7 +47,8 @@ import { MessagesRoutingModule } from './messages/messages.routing.module'
     FormsModule,
     //HttpModule,
     HttpClientModule,
-    MomentModule
+    MomentModule,
+    MessageModule
   ],
   providers: [
     appRoutingProviders
