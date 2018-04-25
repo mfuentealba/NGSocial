@@ -34,12 +34,49 @@ export class AddComponent implements OnInit{
     ){
         this.title = 'Enviar Mensaje';
         this.url = GLOBAL.url;        
-        this.identity = this.user;
+        this.identity = this._userService.getIdentity();
         this.token = this._userService.gettoken();
-        this.message = new Message('', '', '', '', this.identity.user._id, '');
+        console.log(this.identity);
+        this.message = new Message('', '', '', '', this.identity._id, '');
     }
 
     ngOnInit(){
         console.log('AddComponent');
+        this.getMyFollows();
+    }
+
+    onSubmit(form){
+        this._messageService.addMessage(this.token, this.message).subscribe(
+            response => {
+                if(response.message){
+                    this.status = 'success';
+                }
+                form.reset();
+            },
+            error => {
+                var errorMessage = <any>error;
+    
+                console.log(errorMessage);
+                if(errorMessage != null){
+                    this.status = 'error';
+                }
+            }
+        )
+    }
+
+    getMyFollows(){
+        this._followService.getMyFollows(this.token).subscribe(
+            response => {
+                this.follows = response.follows;
+            },
+            error => {
+                var errorMessage = <any>error;
+    
+                console.log(errorMessage);
+                if(errorMessage != null){
+                    this.status = 'error';
+                }
+            }
+        )
     }
 }
