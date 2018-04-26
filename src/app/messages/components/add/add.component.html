@@ -11,8 +11,8 @@
         <p>
             <label for="">Para:</label>
             <!--Listado de seguidores-->
-            <select *ngIf="follows" name="receiver" #receiver="ngModel" [(ngModel)]="message.reveiver" required>
-                <option *ngFor="let follow of follows" value="follow.user._id">
+            <select *ngIf="follows" name="receiver" #receiver="ngModel" [(ngModel)]="message.receiver" required>
+                <option *ngFor="let follow of follows" value="{{follow.user._id}}">
                     {{follow.user.name + ' ' + follow.user.surname + ' (' + follow.user.nick + ')'}}
                 </option>
             </select>

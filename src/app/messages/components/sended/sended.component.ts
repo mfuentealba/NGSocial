@@ -8,11 +8,12 @@ import { UserService } from '../../../services/user.services';
 import { MessageService } from '../../../services/message.service';
 import { FollowService } from '../../../services/follow.services';
 import { GLOBAL } from '../../../services/global';
+import { MomentModule } from 'ngx-moment';
 
 @Component({
     selector: 'sended',
     templateUrl: './sended.component.html',
-    providers: []
+    providers: [MessageService, FollowService, ]
 })
 export class SendedComponent implements OnInit{
     public title: string;
@@ -22,6 +23,11 @@ export class SendedComponent implements OnInit{
     public message: Message;
     public url:string;
     public messages:Message[];
+    public page:number = 1;
+    public next_page;
+    public prev_page;
+    public total:number;
+    public pages:number = 0;
 
     constructor(
       private _route: ActivatedRoute,
@@ -40,25 +46,60 @@ export class SendedComponent implements OnInit{
 
     ngOnInit(){
         console.log('SendedComponent');
-        this.getMessages();
+        this.actualPage();
     }
 
-    getMessages(){
-      this._messageService.getEmmitMessages(this.token, 1).subscribe(
-        response => {
-            if(response.messages){
-                this.messages = response.messages;
+    getMessages(token, page){
+        //console.log(this.token);
+        this._messageService.getEmmitMessages(this.token, page).subscribe(
+            response => {
+                console.log(response);
+                if(response.messages){
+                    this.messages = response.messages;
+                    this.total = response.total;
+                    this.pages = response.pages;
+                    
+                }
+
+            },
+            error => {
+                var errorMessage = <any>error;
+
+                console.log(errorMessage);
+                if(errorMessage != null){
+                    this.status = 'error';
+                }
+            }
+        )
+    }
+
+    actualPage(){
+        this._route.params.subscribe(params => {
+            console.log("DATOS FOLLOWING ");
+            console.log(params);
+            
+            
+            let page = +params['page'];
+
+            this.page = page;
+
+            if(!params['page']){
+                page = 1;
             }
 
-        },
-        error => {
-            var errorMessage = <any>error;
 
-            console.log(errorMessage);
-            if(errorMessage != null){
-                this.status = 'error';
+            if(!page){
+                page = 1;
+            } else {
+                this.next_page = page + 1;
+                this.prev_page = page - 1;
+
+                if(this.prev_page <= 0){
+                    this.prev_page = 1;
+                }
             }
-        }
-    )
+            //devolver usuarios
+            this.getMessages(this.token, 1);
+        });
     }
 }

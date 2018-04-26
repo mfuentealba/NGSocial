@@ -28,10 +28,10 @@ export class MessageService{
         return this._http.get(this.url + 'myMessages/' + page, {headers: headers});
     }
 
-    getEmmitMessages(token, user_id, page = 1):Observable<any>{
+    getEmmitMessages(token, page = 1):Observable<any>{
       let headers = new HttpHeaders().set('Content-Type', 'application/json')
                               .set('Authorization', token);
-      return this._http.get(this.url + 'myMessagesEmit/' + user_id + '/' + page, {headers: headers});
+      return this._http.get(this.url + 'myMessagesEmit/' + page, {headers: headers});
   }
 
     /*deletePublication(token, id):Observable<any>{

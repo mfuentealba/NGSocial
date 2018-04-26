@@ -9,6 +9,7 @@ import { AddComponent } from './components/add/add.component';
 import { MainComponent } from './components/main/main.component';
 import { SendedComponent } from './components/sended/sended.component';
 import { ReceivedComponent } from './components/received/received.component';
+import { MomentModule } from 'ngx-moment';
 
 //Rutas
 
@@ -24,7 +25,8 @@ import { MessagesRoutingModule } from './messages.routing.module';
     imports: [
       CommonModule,
       FormsModule,
-      MessagesRoutingModule
+      MessagesRoutingModule,
+      MomentModule
     ],
     providers: [
       

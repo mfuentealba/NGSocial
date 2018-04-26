@@ -5,7 +5,7 @@ export class Message{
         public viewed:string,
         public create_at:string,
         public emmiter:string,
-        public reveiver:string,
+        public receiver:string,
         
     ){
 

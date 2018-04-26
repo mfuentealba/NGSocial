@@ -48,6 +48,7 @@ export class AddComponent implements OnInit{
     onSubmit(form){
         this._messageService.addMessage(this.token, this.message).subscribe(
             response => {
+                console.log(response);
                 if(response.message){
                     this.status = 'success';
                 }
