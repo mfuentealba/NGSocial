@@ -9,6 +9,11 @@ import { MainComponent } from './components/main/main.component';
 import { SendedComponent } from './components/sended/sended.component';
 import { ReceivedComponent } from './components/received/received.component';
 
+//servicios
+
+import { UserGuard } from '../services/user.guard';
+import { UserService } from '../services/user.services';
+
 
 const messagesRoutes: Routes = [
     {
@@ -16,10 +21,11 @@ const messagesRoutes: Routes = [
         component: MainComponent,
         children:[
             {path: '', redirectTo: 'recibidos', pathMatch: 'full'},
-            {path: 'enviar', component: AddComponent},
-            {path: 'recibidos', component: ReceivedComponent},
-            {path: 'enviados', component: SendedComponent},
-            {path: 'enviados/:page', component: SendedComponent}
+            {path: 'enviar', component: AddComponent, canActivate: [UserGuard]},
+            {path: 'recibidos', component: ReceivedComponent, canActivate: [UserGuard]},
+            {path: 'recibidos/:page', component: ReceivedComponent, canActivate: [UserGuard]},
+            {path: 'enviados', component: SendedComponent, canActivate: [UserGuard]},
+            {path: 'enviados/:page', component: SendedComponent, canActivate: [UserGuard]}
         ]
     }
 ];

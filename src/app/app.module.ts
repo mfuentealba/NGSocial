@@ -26,6 +26,12 @@ import { FollowedComponent } from './components/followed/followed.component';
 
 import { MessageModule } from './messages/message.module'
 
+//servicios
+
+import { UserGuard } from './services/user.guard';
+import { UserService } from './services/user.services';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,10 +54,14 @@ import { MessageModule } from './messages/message.module'
     //HttpModule,
     HttpClientModule,
     MomentModule,
+   /* UserGuard,
+    UserService,*/
     MessageModule
   ],
   providers: [
-    appRoutingProviders
+    appRoutingProviders,
+    UserGuard,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
