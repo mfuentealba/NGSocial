@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { User } from '../../models/user';  
+import { Catergoria } from '../../models/categoria';  
+import { Subcategoria } from '../../models/subcategoria';  
+import { TipoContrato } from '../../models/tipoContrato';  
 import { UserService } from '../../services/user.services';
 import { Form } from '@angular/forms';
 
